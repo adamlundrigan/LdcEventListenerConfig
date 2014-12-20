@@ -1,0 +1,25 @@
+language: php
+
+php:
+  - "5.4"
+  - "5.5"
+  - "5.6"
+  - "hhvm"
+  - "hhvm-nightly"
+
+install:
+  - composer install --dev
+  - composer show -i
+  - wget https://scrutinizer-ci.com/ocular.phar
+
+script:
+  - make
+
+after_script:
+  - php ocular.phar code-coverage:upload --format=php-clover tests/log/clover.xml
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: hhvm
+    - php: hhvm-nightly
