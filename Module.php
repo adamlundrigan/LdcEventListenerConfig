@@ -17,6 +17,20 @@ class Module
         $injector = new ServiceManagerDelegatorFactoryInjector($sm->get('ldc-event-listener-config'));
         $injector->configure($sm);
     }
+
+    public function getAutoloaderConfig()
+    {
+        return array(
+            'Zend\Loader\ClassMapAutoloader' => array(
+                __DIR__ . '/autoload_classmap.php',
+            ),
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__ . '/src',
+                ),
+            ),
+        );
+    }
     
     public function getServiceConfig()
     {

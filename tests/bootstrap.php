@@ -8,3 +8,6 @@
  */
 
 namespace LdcEventListenerConfigTest;
+
+$loader = include __DIR__ . '/../vendor/autoload.php';
+$loader->add(__NAMESPACE__, __DIR__ . '/' . __NAMESPACE__);
